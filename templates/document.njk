@@ -1,0 +1,17 @@
+{% extends "base.njk" %}
+
+{% block title %}{{ node.getTitle() }}{% endblock %}
+
+{% block body %}
+<header>
+{% include "navbar.njk" -%}
+</header>
+<article>
+<header>
+    <h1>{{ node.getTitle() }}</h1>
+    <time datetime="{{ node.getRevisionDate() }}"><span>{{ node.getRevisionDate().substr(2, 2) }}</span><span>{{ node.getRevisionDate().substr(5, 2) }}</span><span>{{ node.getRevisionDate().substr(8, 2) }}</span></time>
+</header>
+{{ node.getContent() | safe }}
+</article>
+{% endblock %}
+
