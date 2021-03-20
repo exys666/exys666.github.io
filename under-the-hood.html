@@ -34,13 +34,13 @@ Unfortunately for me, I am a little bit idealist, so I cannot decide for long wh
 because I would like to have full control of my website.</p>
 <p>Static site generator seems like a perfect solution to me, blog does not require any dynamic content.
 But somehow I do not like <a href="https://jekyllrb.com/">Jekyll</a> which is the default solution for <a href="https://pages.github.com/">Github Pages</a>.</p>
-<p>I know that I want something simple, much simpler.</p>
+<p>I know that I want something simpler, much simpler.</p>
 </section>
 <section>
     <h2>Solution</h2>
-    <p>I came up with simplest solution which does not require writing pure HTML.
-Own static site generator writen in <a href="https://nodejs.org/">node.js</a></p>
-<p>Posts are writen in <a href="https://asciidoc.org/">AsciiDoc</a> and converted to HTML using <a href="https://asciidoctor.org/">Asciidoctor</a></p>
+    <p>I came up with the simplest solution which does not require writing pure HTML.
+Own static site generator written in <a href="https://nodejs.org/">node.js</a></p>
+<p>Posts are written in <a href="https://asciidoc.org/">AsciiDoc</a> and converted to HTML using <a href="https://asciidoctor.org/">Asciidoctor</a></p>
 <figure>
 <figcaption>src/post.js</figcaption>
 <pre class="lanfuage-js"><code><span class="token keyword">const</span> asciidoctor <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'asciidoctor'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -55,7 +55,7 @@ asciidoctor<span class="token punctuation">.</span><span class="token function">
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 </figure>
 <p>All <code>.njk</code> files are converted to HTML using <a href="https://mozilla.github.io/nunjucks/">nunjucks</a>.
-For example this is how <code>index.html</code> page is generated</p>
+For example, this is how <code>index.html</code> page is generated</p>
 <figure>
 <figcaption>src/page.js</figcaption>
 <pre class="lanfuage-js"><code><span class="token keyword">const</span> nunjucks <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'nunjucks'</span><span class="token punctuation">)</span>
@@ -137,9 +137,9 @@ PAGESOUT<span class="token operator">=</span><span class="token variable">$</spa
 </figure>
 </section>
 <section>
-    <h2>Hosting and CI</h2>
-    <p>Since <a href="https://pages.github.com/">Github Pages</a> by defualt only supports Jekyll or static files,
-I&#8217;ve used <a href="https://github.com/features/actions">Github Actions</a> to automaticly generate static files on any changes to <code>master</code> branch.</p>
+    <h2>Hosting &amp; CI</h2>
+    <p>Since <a href="https://pages.github.com/">Github Pages</a> by default only supports Jekyll or static files,
+I&#8217;ve used <a href="https://github.com/features/actions">Github Actions</a> to automatically generate static files on any changes to <code>master</code> branch.</p>
 <figure>
 <figcaption>.github/workflows/publish.yml</figcaption>
 <pre class="lanfuage-yml"><code><span class="token key atrule">name</span><span class="token punctuation">:</span> Build and Publish
@@ -168,7 +168,7 @@ I&#8217;ve used <a href="https://github.com/features/actions">Github Actions</a>
 <section>
     <h2>Source code</h2>
     <p>Since this blog is currently hosted on <a href="https://pages.github.com/">Github Pages</a>,
-all source code it publicly available <a href="https://github.com/exys666/exys666.github.io/">here</a>.</p>
+all source code is publicly available <a href="https://github.com/exys666/exys666.github.io/">here</a>.</p>
 </section>
 </article>
 </body>
