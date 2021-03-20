@@ -68,11 +68,18 @@ nav
 
 figure
     margin: 0
+    position: relative
+    figcaption
+        position: absolute
+        top: 5px
+        right: 5px
 
 pre
     padding: 24px
     background-color: #0e0e0e
+    overflow-x: hidden
     @media ( max-width:  900px)
+        padding-top: 36px
         margin-left: -10px
         margin-right: -10px 
         overflow-x: scroll

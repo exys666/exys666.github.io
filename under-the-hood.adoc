@@ -1,0 +1,75 @@
+= Under the hood
+Bartosz Niziolek <exys666@gmail.com>
+1.0, 2021-03-20
+
+Hello World!
+
+This short sentence is usually used by programmers in the very first program they wrote. 
+It does not feel enough for a first post, so I decided to briefly describe the technical solution of this blog.
+
+== How it begins
+
+Some time ago I've decided that I want to start my technical blog.
+Unfortunately for me, I am a little bit idealist, so I cannot decide for long what should power my blog.
+
+Hosted platforms like https://medium.com/[Medium] or https://wordpress.com/[WordPress] are definitely not for me, 
+because I would like to have full control of my website.
+
+Static site generator seems like a perfect solution to me, blog does not require any dynamic content.
+But somehow I do not like https://jekyllrb.com/[Jekyll] which is the default solution for https://pages.github.com/[Github Pages].
+
+I know that I want something simple, much simpler.
+
+== Solution
+
+I came up with simplest solution which does not require writing pure HTML.
+Own static site generator writen in https://nodejs.org/[node.js]
+
+Posts are writen in https://asciidoc.org/[AsciiDoc] and converted to HTML using https://asciidoctor.org/[Asciidoctor]
+
+.src/post.js
+[source,js]
+----
+include::src/post.js[]
+----
+
+All `.njk` files are converted to HTML using https://mozilla.github.io/nunjucks/[nunjucks].
+For example this is how `index.html` page is generated
+
+.src/page.js
+[source,js]
+----
+include::src/page.js[]
+----
+
+https://sass-lang.com/[Sass] sources are also converted using simple javascript
+
+.src/sass.js
+[source,js]
+----
+include::src/sass.js[]
+----
+
+And finally, all together is glued up by good old https://www.gnu.org/software/make/manual/make.html[make]
+
+.Makefile
+[source,makefile]
+----
+include::Makefile[]
+----
+
+== Hosting and CI
+
+Since https://pages.github.com/[Github Pages] by defualt only supports Jekyll or static files, 
+I've used https://github.com/features/actions[Github Actions] to automaticly generate static files on any changes to `master` branch.
+
+..github/workflows/publish.yml
+[source,yml]
+----
+include::.github/workflows/publish.yml[]
+----
+
+== Source code
+
+Since this blog is currently hosted on https://pages.github.com/[Github Pages], 
+all source code it publicly available https://github.com/exys666/exys666.github.io/[here].

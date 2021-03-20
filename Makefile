@@ -20,7 +20,8 @@ POSTSOUT=$(patsubst %.adoc, $(OUTDIR)/%.html, $(POSTSSRC))
 PAGESSRC=$(wildcard *.njk)
 PAGESOUT=$(patsubst %.njk, $(OUTDIR)/%.html, $(PAGESSRC))
 
-all :  $(OUTDIR) $(POSTSOUT) $(PAGESOUT) $(OUTDIR)/style.css $(OUTDIR)/posts.html $(OUTDIR)/.nojekyll $(OUTDIR)/CNAME
+all :  $(OUTDIR) $(POSTSOUT) $(PAGESOUT) \
+$(OUTDIR)/style.css $(OUTDIR)/posts.html $(OUTDIR)/.nojekyll $(OUTDIR)/CNAME
 .PHONY: all
 
 $(OUTDIR)/%.html : %.adoc $(TEMPSDIR)/*
