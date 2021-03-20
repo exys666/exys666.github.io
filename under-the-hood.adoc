@@ -1,6 +1,6 @@
 = Under the hood
 Bartosz Niziolek <exys666@gmail.com>
-1.0, 2021-03-20
+1.0.1, 2021-03-20
 
 Hello World!
 
@@ -18,14 +18,14 @@ because I would like to have full control of my website.
 Static site generator seems like a perfect solution to me, blog does not require any dynamic content.
 But somehow I do not like https://jekyllrb.com/[Jekyll] which is the default solution for https://pages.github.com/[Github Pages].
 
-I know that I want something simple, much simpler.
+I know that I want something simpler, much simpler.
 
 == Solution
 
-I came up with simplest solution which does not require writing pure HTML.
-Own static site generator writen in https://nodejs.org/[node.js]
+I came up with the simplest solution which does not require writing pure HTML.
+Own static site generator written in https://nodejs.org/[node.js]
 
-Posts are writen in https://asciidoc.org/[AsciiDoc] and converted to HTML using https://asciidoctor.org/[Asciidoctor]
+Posts are written in https://asciidoc.org/[AsciiDoc] and converted to HTML using https://asciidoctor.org/[Asciidoctor]
 
 .src/post.js
 [source,js]
@@ -34,7 +34,7 @@ include::src/post.js[]
 ----
 
 All `.njk` files are converted to HTML using https://mozilla.github.io/nunjucks/[nunjucks].
-For example this is how `index.html` page is generated
+For example, this is how `index.html` page is generated
 
 .src/page.js
 [source,js]
@@ -58,10 +58,10 @@ And finally, all together is glued up by good old https://www.gnu.org/software/m
 include::Makefile[]
 ----
 
-== Hosting and CI
+== Hosting & CI
 
-Since https://pages.github.com/[Github Pages] by defualt only supports Jekyll or static files, 
-I've used https://github.com/features/actions[Github Actions] to automaticly generate static files on any changes to `master` branch.
+Since https://pages.github.com/[Github Pages] by default only supports Jekyll or static files, 
+I've used https://github.com/features/actions[Github Actions] to automatically generate static files on any changes to `master` branch.
 
 ..github/workflows/publish.yml
 [source,yml]
@@ -72,4 +72,4 @@ include::.github/workflows/publish.yml[]
 == Source code
 
 Since this blog is currently hosted on https://pages.github.com/[Github Pages], 
-all source code it publicly available https://github.com/exys666/exys666.github.io/[here].
+all source code is publicly available https://github.com/exys666/exys666.github.io/[here].
