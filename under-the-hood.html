@@ -52,7 +52,8 @@ asciidoctor<span class="token punctuation">.</span><span class="token function">
     template_dir<span class="token operator">:</span> <span class="token string">'templates'</span><span class="token punctuation">,</span>
     to_file<span class="token operator">:</span> outputFile<span class="token punctuation">,</span>
     safe<span class="token operator">:</span> <span class="token string">'safe'</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
 </figure>
 <p>All <code>.njk</code> files are converted to HTML using <a href="https://mozilla.github.io/nunjucks/">nunjucks</a>.
 For example, this is how <code>index.html</code> page is generated</p>
@@ -94,7 +95,7 @@ MAKEFLAGS <span class="token operator">+=</span> --no-builtin-rules
 <span class="token keyword">ifeq</span> <span class="token punctuation">(</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">origin</span> .RECIPEPREFIX<span class="token punctuation">)</span>, undefined<span class="token punctuation">)</span>
   <span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">error</span> This Make does not support .RECIPEPREFIX. Please use GNU Make 4.0 or later<span class="token punctuation">)</span>
 <span class="token keyword">endif</span>
-.RECIPEPREFIX <span class="token operator">=</span> &amp;gt<span class="token punctuation">;</span>
+.RECIPEPREFIX <span class="token operator">=</span> >
 
 SASSDIR<span class="token operator">=</span>sass
 TEMPSDIR<span class="token operator">=</span>templates
@@ -111,29 +112,30 @@ PAGESOUT<span class="token operator">=</span><span class="token variable">$</spa
 <span class="token builtin">.PHONY</span><span class="token punctuation">:</span> all
 
 <span class="token symbol"><span class="token variable">$</span>(OUTDIR)/%.html</span> <span class="token punctuation">:</span> %.adoc <span class="token variable">$</span><span class="token punctuation">(</span>TEMPSDIR<span class="token punctuation">)</span>/*
-&amp;gt<span class="token punctuation">;</span> npm run post <span class="token variable">$&amp;lt;</span> <span class="token variable">$@</span>
+> npm run post <span class="token variable">$&lt;</span> <span class="token variable">$@</span>
 
 <span class="token symbol"><span class="token variable">$</span>(OUTDIR)/%.html</span> <span class="token punctuation">:</span> %.njk <span class="token variable">$</span><span class="token punctuation">(</span>TEMPSDIR<span class="token punctuation">)</span>/*
-&amp;gt<span class="token punctuation">;</span> npm run page <span class="token variable">$&amp;lt;</span> <span class="token variable">$@</span>
+> npm run page <span class="token variable">$&lt;</span> <span class="token variable">$@</span>
 
 <span class="token symbol"><span class="token variable">$</span>(OUTDIR)/posts.html</span> <span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTSSRC<span class="token punctuation">)</span>
-&amp;gt<span class="token punctuation">;</span> npm run posts <span class="token variable">$@</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTSSRC<span class="token punctuation">)</span>
+> npm run posts <span class="token variable">$@</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTSSRC<span class="token punctuation">)</span>
 
 <span class="token symbol"><span class="token variable">$</span>(OUTDIR)/style.css</span> <span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>SASSDIR<span class="token punctuation">)</span>/*.sass
-&amp;gt<span class="token punctuation">;</span> npm run css <span class="token variable">$</span><span class="token punctuation">(</span>SASSDIR<span class="token punctuation">)</span>/main.sass <span class="token variable">$@</span>
+> npm run css <span class="token variable">$</span><span class="token punctuation">(</span>SASSDIR<span class="token punctuation">)</span>/main.sass <span class="token variable">$@</span>
 
 <span class="token symbol"><span class="token variable">$</span>(OUTDIR)/.nojekyll</span> <span class="token punctuation">:</span>
-&amp;gt<span class="token punctuation">;</span> touch <span class="token variable">$@</span>
+> touch <span class="token variable">$@</span>
 
 <span class="token symbol"><span class="token variable">$</span>(OUTDIR)/CNAME</span> <span class="token punctuation">:</span> CNAME 
-&amp;gt<span class="token punctuation">;</span> cp CNAME <span class="token variable">$@</span>
+> cp CNAME <span class="token variable">$@</span>
 
 <span class="token symbol"><span class="token variable">$</span>(OUTDIR)</span> <span class="token punctuation">:</span> 
-&amp;gt<span class="token punctuation">;</span> mkdir <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>
+> mkdir <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>
 
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
-&amp;gt<span class="token punctuation">;</span> rm -rf <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>
-<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> clean</code></pre>
+> rm -rf <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>
+<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> clean
+</code></pre>
 </figure>
 </section>
 <section>
