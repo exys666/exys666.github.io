@@ -650,14 +650,22 @@ nav ul li:first-of-type::before {
 
 figure {
   margin: 0;
+  position: relative;
+}
+figure figcaption {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 pre {
   padding: 24px;
   background-color: #0e0e0e;
+  overflow-x: hidden;
 }
 @media (max-width: 900px) {
   pre {
+    padding-top: 36px;
     margin-left: -10px;
     margin-right: -10px;
     overflow-x: scroll;
