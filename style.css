@@ -557,7 +557,7 @@ code {
 
 a {
   text-decoration: none;
-  color: #eee;
+  color: #bbb;
 }
 a:hover {
   color: #6b0000;
@@ -577,6 +577,9 @@ nav, article, main {
 nav {
   position: relative;
   margin-bottom: 36px;
+}
+nav a {
+  color: #eee;
 }
 nav h1 {
   display: inline-block;
