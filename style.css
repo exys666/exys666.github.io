@@ -681,19 +681,14 @@ article time span {
   }
 }
 
-ul.tags {
-  display: inline-block;
-  list-style: none;
-}
-ul.tags li {
-  display: inline-block;
-  margin: 0;
-}
-
 ul#posts {
   list-style: none;
   padding: 0;
 }
 ul#posts a {
   text-decoration: none;
+  color: #eee;
+}
+ul#posts a:hover {
+  color: #6b0000;
 }
