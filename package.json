@@ -1,0 +1,22 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "page": "node src/js/page.js",
+    "post": "node src/js/post.js",
+    "posts": "node src/js/posts.js",
+    "css": "node src/js/sass.js"
+  },
+  "dependencies": {
+    "markdown-it": "^13.0.2",
+    "markdown-it-include": "^2.0.0",
+    "markdown-it-meta": "^0.0.1",
+    "markdown-it-prism": "^2.3.0",
+    "markdown-it-title": "^4.0.0",
+    "normalize-scss": "^7.0.1",
+    "nunjucks": "3.2.4",
+    "prism-themes": "^1.9.0",
+    "sass": "^1.69.5"
+  }
+}

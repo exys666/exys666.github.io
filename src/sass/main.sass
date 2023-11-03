@@ -1,0 +1,136 @@
+@import '../../node_modules/normalize-scss/sass/_normalize'
+@import '../../node_modules/prism-themes/themes/prism-nord'
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap')
+
+@include normalize()
+
+html
+    height: 100%
+    font-family: 'Oswald', sans-serif
+    background-color: #222
+    color: #eee
+
+body
+    height: 100%
+
+code
+    font-family: 'Ubuntu Mono', monospace
+
+a
+    text-decoration: none
+    color: #eee
+    &:hover
+        color: #6b0000
+
+nav, article, main
+    width: 900px
+    margin: 0 auto
+
+    @media ( max-width:  900px)
+        width: auto
+        padding: 0 10px
+        
+
+nav
+    position: relative
+    margin-bottom: 36px
+
+    h1
+        display: inline-block
+        font-size: 24px
+
+        span
+            color: #6b0000
+
+        a:hover
+            color: #eee
+
+
+    ul
+        display: inline-block
+        list-style: none
+        position: absolute
+        right: 0
+        li
+            display: inline-block
+            margin: 0
+            
+            &:before
+                content: '|'
+                margin: 0 10px 0 5px
+            
+            &:first-of-type::before
+                display: none
+        @media ( max-width:  900px)
+            margin-right: 10px
+
+pre
+    padding: 24px
+    background-color: #0e0e0e
+    overflow-x: hidden
+    @media ( max-width:  900px)
+        padding-top: 36px
+        margin-left: -10px
+        margin-right: -10px 
+        overflow-x: scroll
+
+pre[class*=language-]
+    background-color: #0e0e0e
+
+
+body > nav
+    height: 100%
+    margin: 0 auto
+    text-align: center
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+    h1
+        font-size: 96px
+    ul
+        margin: 0 auto
+        position: relative
+        text-align: center
+
+
+article
+    position: relative
+
+    h1
+        font-size: 66px
+        @media ( max-width:  900px)
+            text-indent: 30px
+
+    time
+        font-family: 'Ubuntu Mono', monospace
+        display: inline-block
+        background-color: #6b0000
+        position: absolute
+        left: -46px
+        top: 0
+        padding: 10px
+        font-weight: 700
+        text-align: right
+        span
+            display: block
+        @media ( max-width:  900px)
+            left: -10px
+
+ul.tags
+    display: inline-block
+    list-style: none
+
+    li
+        display: inline-block
+        margin: 0
+
+ul#posts
+    list-style: none
+    padding: 0
+
+    a
+        text-decoration: none
+

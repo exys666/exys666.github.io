@@ -1,0 +1,14 @@
+{% extends "src/html/base.njk" %}
+
+{% block title %}exys666.com - {{ title }}{% endblock %}
+
+{% block body %}
+<header>
+{% include "src/html/navbar.njk" -%}
+</header>
+<article>
+<time datetime="{{ meta.date.toISOString().substring(0,10) }}"><span>{{ meta.date.toISOString().substr(2, 2) }}</span><span>{{ meta.date.toISOString().substr(5, 2) }}</span><span>{{ meta.date.toISOString().substr(8, 2) }}</span></time>
+{{ content | safe }}
+</article>
+{% endblock %}
+
