@@ -133,12 +133,9 @@ pre[class*=language-] {
  *    IE on Windows Phone and in iOS.
  */
 html {
-  line-height: 1.15;
-  /* 1 */
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
+  line-height: 1.15; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 /* Sections
@@ -193,12 +190,9 @@ figure {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box;
-  /* 1 */
-  height: 0;
-  /* 1 */
-  overflow: visible;
-  /* 2 */
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
 }
 
 /**
@@ -213,10 +207,8 @@ main {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
 }
 
 /* Links
@@ -226,10 +218,8 @@ pre {
  * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
  */
 a {
-  background-color: transparent;
-  /* 1 */
-  -webkit-text-decoration-skip: objects;
-  /* 2 */
+  background-color: transparent; /* 1 */
+  -webkit-text-decoration-skip: objects; /* 2 */
 }
 
 /* Text-level semantics
@@ -239,12 +229,9 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 abbr[title] {
-  border-bottom: none;
-  /* 1 */
-  text-decoration: underline;
-  /* 2 */
-  text-decoration: underline dotted;
-  /* 2 */
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -270,10 +257,8 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
 }
 
 /**
@@ -361,14 +346,10 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
-  /* 1 */
-  font-size: 100%;
-  /* 1 */
-  line-height: 1.15;
-  /* 1 */
-  margin: 0;
-  /* 2 */
+  font-family: sans-serif; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
 }
 
 /**
@@ -383,8 +364,7 @@ button {
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select {
-  /* 1 */
+select { /* 1 */
   text-transform: none;
 }
 
@@ -397,8 +377,7 @@ button,
 html [type=button],
 [type=reset],
 [type=submit] {
-  -webkit-appearance: button;
-  /* 2 */
+  -webkit-appearance: button; /* 2 */
 }
 
 button,
@@ -439,10 +418,8 @@ input {
  */
 [type=checkbox],
 [type=radio] {
-  box-sizing: border-box;
-  /* 1 */
-  padding: 0;
-  /* 2 */
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
 }
 
 /**
@@ -458,10 +435,8 @@ input {
  * 2. Correct the outline style in Safari.
  */
 [type=search] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  outline-offset: -2px;
-  /* 2 */
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
   /**
    * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
    */
@@ -475,10 +450,8 @@ input {
  * 2. Change font properties to `inherit` in Safari.
  */
 ::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  /* 1 */
-  font: inherit;
-  /* 2 */
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
 }
 
 /**
@@ -495,18 +468,12 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box;
-  /* 1 */
-  display: table;
-  /* 1 */
-  max-width: 100%;
-  /* 1 */
-  padding: 0;
-  /* 3 */
-  color: inherit;
-  /* 2 */
-  white-space: normal;
-  /* 1 */
+  box-sizing: border-box; /* 1 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  color: inherit; /* 2 */
+  white-space: normal; /* 1 */
 }
 
 /**
@@ -514,10 +481,8 @@ legend {
  * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
  */
 progress {
-  display: inline-block;
-  /* 1 */
-  vertical-align: baseline;
-  /* 2 */
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
 }
 
 /**
@@ -591,6 +556,7 @@ code {
 }
 
 a {
+  text-decoration: none;
   color: #eee;
 }
 a:hover {
@@ -622,9 +588,6 @@ nav h1 span {
 nav h1 a:hover {
   color: #eee;
 }
-nav a {
-  text-decoration: none;
-}
 nav ul {
   display: inline-block;
   list-style: none;
@@ -648,16 +611,6 @@ nav ul li:first-of-type::before {
   }
 }
 
-figure {
-  margin: 0;
-  position: relative;
-}
-figure figcaption {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
 pre {
   padding: 24px;
   background-color: #0e0e0e;
@@ -670,6 +623,10 @@ pre {
     margin-right: -10px;
     overflow-x: scroll;
   }
+}
+
+pre[class*=language-] {
+  background-color: #0e0e0e;
 }
 
 body > nav {
@@ -690,18 +647,18 @@ body > nav ul {
   text-align: center;
 }
 
-article header {
+article {
   position: relative;
 }
-article header h1 {
+article h1 {
   font-size: 66px;
 }
 @media (max-width: 900px) {
-  article header h1 {
+  article h1 {
     text-indent: 30px;
   }
 }
-article header time {
+article time {
   font-family: "Ubuntu Mono", monospace;
   display: inline-block;
   background-color: #6b0000;
@@ -712,13 +669,22 @@ article header time {
   font-weight: 700;
   text-align: right;
 }
-article header time span {
+article time span {
   display: block;
 }
 @media (max-width: 900px) {
-  article header time {
+  article time {
     left: -10px;
   }
+}
+
+ul.tags {
+  display: inline-block;
+  list-style: none;
+}
+ul.tags li {
+  display: inline-block;
+  margin: 0;
 }
 
 ul#posts {

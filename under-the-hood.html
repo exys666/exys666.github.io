@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Under the hood</title>
+    <title>exys666.com - Under the hood</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -19,47 +19,56 @@
 </nav>
 </header>
 <article>
-<header>
-    <h1>Under the hood</h1>
-    <time datetime="2021-03-20"><span>21</span><span>03</span><span>20</span></time>
-</header>
-<p>Hello World!</p>
+<time datetime="2023-11-01"><span>23</span><span>11</span><span>01</span></time>
+<h1>Under the hood</h1>
+<h2>Hello World!</h2>
 <p>This short sentence is usually used by programmers in the very first program they wrote.
-It does not feel enough for a first post, so I decided to briefly describe the technical solution of this blog.</p>
-<section>
-    <h2>How it begins</h2>
-    <p>Some time ago I&#8217;ve decided that I want to start my technical blog.
+It does not feel enough for a first post, so I decided to briefly describe the technical solution for this blog.</p>
+<h2>How it begins</h2>
+<p>Some time ago I've decided that I want to start my technical blog.
 Unfortunately for me, I am a little bit idealist, so I cannot decide for long what should power my blog.</p>
 <p>Hosted platforms like <a href="https://medium.com/">Medium</a> or <a href="https://wordpress.com/">WordPress</a> are definitely not for me,
 because I would like to have full control of my website.</p>
 <p>Static site generator seems like a perfect solution to me, blog does not require any dynamic content.
 But somehow I do not like <a href="https://jekyllrb.com/">Jekyll</a> which is the default solution for <a href="https://pages.github.com/">Github Pages</a>.</p>
 <p>I know that I want something simpler, much simpler.</p>
-</section>
-<section>
-    <h2>Solution</h2>
-    <p>I came up with the simplest solution which does not require writing pure HTML.
+<h2>Solution</h2>
+<p>I came up with the simplest solution which does not require writing pure HTML.
 Own static site generator written in <a href="https://nodejs.org/">node.js</a></p>
-<p>Posts are written in <a href="https://asciidoc.org/">AsciiDoc</a> and converted to HTML using <a href="https://asciidoctor.org/">Asciidoctor</a></p>
-<figure>
-<figcaption>src/post.js</figcaption>
-<pre class="lanfuage-js"><code><span class="token keyword">const</span> asciidoctor <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'asciidoctor'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p>Posts are written in Markdown and converted to HTML using <a href="https://github.com/markdown-it/markdown-it">markdown-it</a></p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> nunjucks <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'nunjucks'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> md<span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'markdown-it'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> meta <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'markdown-it-meta'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> title <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'markdown-it-title'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> prism <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'markdown-it-prism'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> include <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'markdown-it-include'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
 
 <span class="token keyword">const</span> inputFile <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
 <span class="token keyword">const</span> outputFile <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
 
-asciidoctor<span class="token punctuation">.</span><span class="token function">convertFile</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    template_dir<span class="token operator">:</span> <span class="token string">'templates'</span><span class="token punctuation">,</span>
-    to_file<span class="token operator">:</span> outputFile<span class="token punctuation">,</span>
-    safe<span class="token operator">:</span> <span class="token string">'safe'</span>
+<span class="token keyword">const</span> env <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">nunjucks<span class="token punctuation">.</span>Environment</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">nunjucks<span class="token punctuation">.</span>FileSystemLoader</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+md<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>meta<span class="token punctuation">)</span>
+md<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>prism<span class="token punctuation">)</span>
+md<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span>
+md<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>include<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> src <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> <span class="token string">"utf8"</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">const</span> contentHtml <span class="token operator">=</span> md<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> ctx<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> html <span class="token operator">=</span> env<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'src/html/post.njk'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">content</span><span class="token operator">:</span> contentHtml<span class="token punctuation">,</span>
+    <span class="token literal-property property">title</span><span class="token operator">:</span> ctx<span class="token punctuation">.</span>title<span class="token punctuation">,</span>
+    <span class="token literal-property property">meta</span><span class="token operator">:</span> md<span class="token punctuation">.</span>meta
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
+fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>outputFile<span class="token punctuation">,</span> html<span class="token punctuation">)</span>
+
 </code></pre>
-</figure>
 <p>All <code>.njk</code> files are converted to HTML using <a href="https://mozilla.github.io/nunjucks/">nunjucks</a>.
 For example, this is how <code>index.html</code> page is generated</p>
-<figure>
-<figcaption>src/page.js</figcaption>
-<pre class="lanfuage-js"><code><span class="token keyword">const</span> nunjucks <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'nunjucks'</span><span class="token punctuation">)</span>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> nunjucks <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'nunjucks'</span><span class="token punctuation">)</span>
 <span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
 
 <span class="token keyword">const</span> env <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">nunjucks<span class="token punctuation">.</span>Environment</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">nunjucks<span class="token punctuation">.</span>FileSystemLoader</span><span class="token punctuation">(</span><span class="token string">'./'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -68,83 +77,57 @@ For example, this is how <code>index.html</code> page is generated</p>
 <span class="token keyword">const</span> outputFile <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
 
 <span class="token keyword">const</span> html <span class="token operator">=</span> env<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span>
-fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>outputFile<span class="token punctuation">,</span> html<span class="token punctuation">)</span></code></pre>
-</figure>
+fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>outputFile<span class="token punctuation">,</span> html<span class="token punctuation">)</span>
+</code></pre>
 <p><a href="https://sass-lang.com/">Sass</a> sources are also converted using simple javascript</p>
-<figure>
-<figcaption>src/sass.js</figcaption>
-<pre class="lanfuage-js"><code><span class="token keyword">const</span> sass <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'sass'</span><span class="token punctuation">)</span>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> sass <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'sass'</span><span class="token punctuation">)</span>
 <span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
 
 <span class="token keyword">const</span> inputFile <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
 <span class="token keyword">const</span> outputFile <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
 
-<span class="token keyword">const</span> result <span class="token operator">=</span> sass<span class="token punctuation">.</span><span class="token function">renderSync</span><span class="token punctuation">(</span><span class="token punctuation">{</span> file<span class="token operator">:</span> inputFile <span class="token punctuation">}</span><span class="token punctuation">)</span>
-fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>outputFile<span class="token punctuation">,</span> result<span class="token punctuation">.</span>css<span class="token punctuation">)</span></code></pre>
-</figure>
-<p>And finally, all together is glued up by good old <a href="https://www.gnu.org/software/make/manual/make.html">make</a></p>
-<figure>
-<figcaption>Makefile</figcaption>
-<pre class="lanfuage-makefile"><code>SHELL <span class="token operator">:=</span> bash
-<span class="token builtin">.ONESHELL</span><span class="token punctuation">:</span>
-.SHELLFLAGS <span class="token operator">:=</span> -eu -o pipefail -c
-<span class="token builtin">.DELETE_ON_ERROR</span><span class="token punctuation">:</span>
-MAKEFLAGS <span class="token operator">+=</span> --warn-undefined-variables
-MAKEFLAGS <span class="token operator">+=</span> --no-builtin-rules
-
-<span class="token keyword">ifeq</span> <span class="token punctuation">(</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">origin</span> .RECIPEPREFIX<span class="token punctuation">)</span>, undefined<span class="token punctuation">)</span>
-  <span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">error</span> This Make does not support .RECIPEPREFIX. Please use GNU Make 4.0 or later<span class="token punctuation">)</span>
-<span class="token keyword">endif</span>
-.RECIPEPREFIX <span class="token operator">=</span> >
-
-SASSDIR<span class="token operator">=</span>sass
-TEMPSDIR<span class="token operator">=</span>templates
-OUTDIR<span class="token operator">=</span>output
-
-POSTSSRC<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">wildcard</span> *.adoc<span class="token punctuation">)</span>
-POSTSOUT<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">patsubst</span> %.adoc, <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>/%.html, <span class="token variable">$</span><span class="token punctuation">(</span>POSTSSRC<span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-PAGESSRC<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">wildcard</span> *.njk<span class="token punctuation">)</span>
-PAGESOUT<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token keyword">patsubst</span> %.njk, <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>/%.html, <span class="token variable">$</span><span class="token punctuation">(</span>PAGESSRC<span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token symbol">all</span> <span class="token punctuation">:</span>  <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTSOUT<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>PAGESOUT<span class="token punctuation">)</span> \
-<span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>/style.css <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>/posts.html <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>/.nojekyll <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>/CNAME
-<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> all
-
-<span class="token symbol"><span class="token variable">$</span>(OUTDIR)/%.html</span> <span class="token punctuation">:</span> %.adoc <span class="token variable">$</span><span class="token punctuation">(</span>TEMPSDIR<span class="token punctuation">)</span>/*
-> npm run post <span class="token variable">$&lt;</span> <span class="token variable">$@</span>
-
-<span class="token symbol"><span class="token variable">$</span>(OUTDIR)/%.html</span> <span class="token punctuation">:</span> %.njk <span class="token variable">$</span><span class="token punctuation">(</span>TEMPSDIR<span class="token punctuation">)</span>/*
-> npm run page <span class="token variable">$&lt;</span> <span class="token variable">$@</span>
-
-<span class="token symbol"><span class="token variable">$</span>(OUTDIR)/posts.html</span> <span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTSSRC<span class="token punctuation">)</span>
-> npm run posts <span class="token variable">$@</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTSSRC<span class="token punctuation">)</span>
-
-<span class="token symbol"><span class="token variable">$</span>(OUTDIR)/style.css</span> <span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>SASSDIR<span class="token punctuation">)</span>/*.sass
-> npm run css <span class="token variable">$</span><span class="token punctuation">(</span>SASSDIR<span class="token punctuation">)</span>/main.sass <span class="token variable">$@</span>
-
-<span class="token symbol"><span class="token variable">$</span>(OUTDIR)/.nojekyll</span> <span class="token punctuation">:</span>
-> touch <span class="token variable">$@</span>
-
-<span class="token symbol"><span class="token variable">$</span>(OUTDIR)/CNAME</span> <span class="token punctuation">:</span> CNAME 
-> cp CNAME <span class="token variable">$@</span>
-
-<span class="token symbol"><span class="token variable">$</span>(OUTDIR)</span> <span class="token punctuation">:</span> 
-> mkdir <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>
-
-<span class="token symbol">clean</span><span class="token punctuation">:</span>
-> rm -rf <span class="token variable">$</span><span class="token punctuation">(</span>OUTDIR<span class="token punctuation">)</span>
-<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> clean
+<span class="token keyword">const</span> result <span class="token operator">=</span> sass<span class="token punctuation">.</span><span class="token function">renderSync</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">file</span><span class="token operator">:</span> inputFile <span class="token punctuation">}</span><span class="token punctuation">)</span>
+fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>outputFile<span class="token punctuation">,</span> result<span class="token punctuation">.</span>css<span class="token punctuation">)</span>
 </code></pre>
-</figure>
-</section>
-<section>
-    <h2>Hosting &amp; CI</h2>
-    <p>Since <a href="https://pages.github.com/">Github Pages</a> by default only supports Jekyll or static files,
-I&#8217;ve used <a href="https://github.com/features/actions">Github Actions</a> to automatically generate static files on any changes to <code>master</code> branch.</p>
-<figure>
-<figcaption>.github/workflows/publish.yml</figcaption>
-<pre class="lanfuage-yml"><code><span class="token key atrule">name</span><span class="token punctuation">:</span> Build and Publish
+<p>And finally, all together is glued up by good old <a href="https://www.gnu.org/software/make/manual/make.html">make</a></p>
+<pre class="language-makefile"><code class="language-makefile">PAGES_SRC<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">wildcard</span> *.njk<span class="token punctuation">)</span>
+PAGES<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">patsubst</span> %.njk, target/%.html, <span class="token variable">$</span><span class="token punctuation">(</span>PAGES_SRC<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+POSTS_SRC<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">wildcard</span> *.md<span class="token punctuation">)</span>
+POSTS<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">patsubst</span> %.md, target/%.html, <span class="token variable">$</span><span class="token punctuation">(</span>POSTS_SRC<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token target symbol">all</span> <span class="token punctuation">:</span>  target <span class="token variable">$</span><span class="token punctuation">(</span>PAGES<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTS<span class="token punctuation">)</span> target/style.css target/posts.html target/CNAME target/.nojekyll
+<span class="token builtin-target builtin">.PHONY</span><span class="token punctuation">:</span> all
+
+<span class="token target symbol">target/%.html</span> <span class="token punctuation">:</span> %.md
+	npm run post <span class="token variable">$&lt;</span> <span class="token variable">$@</span>
+
+<span class="token target symbol">target/%.html</span> <span class="token punctuation">:</span> %.njk
+	npm run page <span class="token variable">$&lt;</span> <span class="token variable">$@</span>
+
+<span class="token target symbol">target/style.css</span> <span class="token punctuation">:</span> src/sass/*.sass
+	npm run css src/sass/main.sass <span class="token variable">$@</span>
+
+<span class="token target symbol">target/posts.html</span> <span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>POSTS_SRC<span class="token punctuation">)</span>
+	npm run posts ./ <span class="token variable">$@</span>
+
+<span class="token target symbol">target/CNAME</span> <span class="token punctuation">:</span> CNAME
+	cp <span class="token variable">$&lt;</span> <span class="token variable">$@</span>
+
+<span class="token target symbol">target/.nojekyll</span> <span class="token punctuation">:</span>
+	touch <span class="token variable">$@</span>
+
+<span class="token target symbol">target</span> <span class="token punctuation">:</span>
+	mkdir target
+
+<span class="token target symbol">clean</span><span class="token punctuation">:</span>
+	rm -rf target
+<span class="token builtin-target builtin">.PHONY</span><span class="token punctuation">:</span> clean
+</code></pre>
+<h2>Hosting &amp; CI</h2>
+<p>Since <a href="https://pages.github.com/">Github Pages</a> by default only supports Jekyll or static files,
+I've used <a href="https://github.com/features/actions">Github Actions</a> to automatically generate static files on any changes to <code>master</code> branch.</p>
+<pre class="language-yml"><code class="language-yml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Build and Publish
 <span class="token key atrule">on</span><span class="token punctuation">:</span>
   <span class="token key atrule">push</span><span class="token punctuation">:</span>
     <span class="token key atrule">branches</span><span class="token punctuation">:</span> <span class="token punctuation">[</span> master <span class="token punctuation">]</span>
@@ -153,7 +136,7 @@ I&#8217;ve used <a href="https://github.com/features/actions">Github Actions</a>
     <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
     <span class="token key atrule">steps</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout 🛎️
-        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2.3.1
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v4
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install and Build 🔧
         <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
@@ -161,17 +144,15 @@ I&#8217;ve used <a href="https://github.com/features/actions">Github Actions</a>
           make</span>
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Publish 🚀
-        <span class="token key atrule">uses</span><span class="token punctuation">:</span> JamesIves/github<span class="token punctuation">-</span>pages<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span>action@4.1.0
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> JamesIves/github<span class="token punctuation">-</span>pages<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span>action@v4
         <span class="token key atrule">with</span><span class="token punctuation">:</span>
           <span class="token key atrule">branch</span><span class="token punctuation">:</span> public 
-          <span class="token key atrule">folder</span><span class="token punctuation">:</span> output</code></pre>
-</figure>
-</section>
-<section>
-    <h2>Source code</h2>
-    <p>Since this blog is currently hosted on <a href="https://pages.github.com/">Github Pages</a>,
+          <span class="token key atrule">folder</span><span class="token punctuation">:</span> target
+</code></pre>
+<h2>Source code</h2>
+<p>Since this blog is currently hosted on <a href="https://pages.github.com/">Github Pages</a>,
 all source code is publicly available <a href="https://github.com/exys666/exys666.github.io/">here</a>.</p>
-</section>
+
 </article>
 </body>
 </html>
