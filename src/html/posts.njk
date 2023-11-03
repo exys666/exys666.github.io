@@ -7,7 +7,7 @@
 {% include "src/html/navbar.njk" -%}
 </header>
 <main>
-    <ul>{% for post in posts %}
+    <ul id="posts">{% for post in posts %}
         <li><a href="/{{ post.path }}"><time datetime="{{ post.date.toISOString().slice(0,10) }}">{{ post.date.toISOString().slice(0,10) }}</time> {{ post.title }}</a></li>
     {% endfor %}</ul>
 </main>
