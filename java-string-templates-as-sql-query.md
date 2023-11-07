@@ -22,7 +22,7 @@ public class Example {
 }
 ```
 
-Unfortunately [Prism](https://prismjs.com/) highlighter does not support yet new Java 21 features.
+Unfortunately [Prism](https://prismjs.com/) highlighter does not support new Java 21 features yet.
 
 `STR` is `Processor<String, RuntimeException>` static field in `java.lang.StringTemplate` interface.
 There is also [FMT](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/FormatProcessor.html#FMT)
