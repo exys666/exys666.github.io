@@ -1,7 +1,7 @@
 PAGES_SRC=$(wildcard *.njk)
 PAGES=$(patsubst %.njk, target/%.html, $(PAGES_SRC))
 
-POSTS_SRC=$(wildcard *.md)
+POSTS_SRC=$(filter-out README.md, $(wildcard *.md))
 POSTS=$(patsubst %.md, target/%.html, $(POSTS_SRC))
 
 all :  target $(PAGES) $(POSTS) target/style.css target/posts.html target/CNAME target/.nojekyll

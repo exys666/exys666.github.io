@@ -14,6 +14,7 @@ md.use(title);
 
 const posts = fs.readdirSync(inputDir)
     .filter(file => file.endsWith('.md'))
+    .filter(file => file !== 'README.md')
     .map(file => {
         const src = fs.readFileSync(inputDir + file, "utf8")
         const ctx = {}
