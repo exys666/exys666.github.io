@@ -45,7 +45,7 @@ Proper solution should make use of `java.sql.PreparedStatement`.
 For example:
 ```java
 String name = "exys";
-STR."Hello \{ name }, have a good day";
+CUSTOM_PROCESSOR."Hello \{ name }, have a good day";
 ```
 will return:
 ```java
