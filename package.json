@@ -9,7 +9,7 @@
     "css": "node src/js/sass.js"
   },
   "dependencies": {
-    "markdown-it": "^13.0.2",
+    "markdown-it": "^14.1.1",
     "markdown-it-include": "^2.0.0",
     "markdown-it-meta": "^0.0.1",
     "markdown-it-prism": "^2.3.0",
