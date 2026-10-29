@@ -56,6 +56,10 @@ export default function (eleventyConfig) {
         return new Date(date).toISOString().substring(8, 10);
     });
 
+    eleventyConfig.addCollection("postReversed", (collectionApi) => {
+        return collectionApi.getFilteredByTag("post").reverse();
+      });
+
     eleventyConfig.addTemplateFormats("sass")
 
     eleventyConfig.ignores.add("README.md");

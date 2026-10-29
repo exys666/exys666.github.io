@@ -127,8 +127,28 @@ ul#posts
     padding: 0
 
     a
+        position: relative
         text-decoration: none
+        display: block
         color: #eee
-        &:hover
-                color: #6b0000
 
+        h2, p
+            padding-left: 50px
+
+        time
+            font-family: 'Ubuntu Mono', monospace
+            display: inline-block
+            background-color: #6b0000
+            position: absolute
+            left: 0
+            top: 0
+            padding: 10px
+            font-weight: 700
+            text-align: right
+            span
+                display: block
+
+
+        &:hover
+            h2
+                color: #6b0000

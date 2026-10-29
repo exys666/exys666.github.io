@@ -1,8 +1,11 @@
 ---
 title: Java string templates as SQL query
+description: String templates is new powerful tool, lets explore how it can help with SQL queries.
 date: 2023-11-07
 ---
-# Java string templates as SQL query
+# {{ title }}
+
+{{ description }}
 
 ## String templates
 
