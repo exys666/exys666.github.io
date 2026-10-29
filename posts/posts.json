@@ -1,4 +1,4 @@
 {
   "tags": ["post"],
-  "layout": "post.njk"
+  "layout": "post.hbs"
 }

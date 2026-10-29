@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.7",
+    "@11ty/eleventy-plugin-handlebars": "^1.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "normalize-scss": "^8.0.0",
     "prism-themes": "^1.9.0",

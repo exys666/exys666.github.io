@@ -2,10 +2,12 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import * as sass from "sass";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
 
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(syntaxHighlight);
+    eleventyConfig.addPlugin(handlebarsPlugin);
 
 	eleventyConfig.addExtension("sass", {
 		outputFileExtension: "css",
@@ -40,6 +42,19 @@ export default function (eleventyConfig) {
 			};
 		},
 	});
+
+    eleventyConfig.addFilter("dateToISO", (date) => {
+        return new Date(date).toISOString().substring(0, 10);
+    });
+    eleventyConfig.addFilter("dateGetYear", (date) => {
+        return new Date(date).toISOString().substring(2, 4);
+    });
+    eleventyConfig.addFilter("dateGetMonth", (date) => {
+        return new Date(date).toISOString().substring(5, 7);
+    });
+    eleventyConfig.addFilter("dateGetDay", (date) => {
+        return new Date(date).toISOString().substring(8, 10);
+    });
 
     eleventyConfig.addTemplateFormats("sass")
 

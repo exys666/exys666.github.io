@@ -1,0 +1,12 @@
+---
+layout: base.hbs
+page_title: exys666.com - posts
+---
+<header>
+    {{> navbar }}
+</header>
+<main>
+    <ul id="posts">{{#each collections.post }}
+        <li><a href="{{ this.url }}"><time datetime="{{dateToISO this.date }}"><span>{{dateToISO this.date }}</span></time> {{ this.data.title }}</a></li>
+    {{/each}}</ul>
+</main>

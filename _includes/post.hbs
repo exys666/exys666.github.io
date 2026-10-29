@@ -1,0 +1,12 @@
+---
+layout: base.hbs
+eleventyComputed:
+    page_title: exys666.com - {{ title }}
+---
+<header>
+    {{> navbar }}
+</header>
+<article>
+    <time datetime="{{dateToISO date }}"><span>{{dateGetYear date }}</span><span>{{dateGetMonth date }}</span><span>{{dateGetDay date }}</span></time>
+    {{{ content }}}
+</article>
