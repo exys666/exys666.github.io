@@ -1,6 +1,8 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import * as sass from "sass";
+import postcss from "postcss";
+import postcssImport from "postcss-import";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
@@ -37,8 +39,18 @@ export default function (eleventyConfig) {
 			// Map dependencies for incremental builds
 			this.addDependencies(inputPath, result.loadedUrls);
 
+            // Inline CSS @import statements.
+            const processed = await postcss([
+                postcssImport({
+                    path: ["node_modules"],
+                }),
+            ]).process(result.css, {
+                from: inputPath,
+            });
+
+
 			return async (data) => {
-				return result.css;
+				return processed.css;
 			};
 		},
 	});

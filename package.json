@@ -10,7 +10,9 @@
     "@11ty/eleventy": "^3.1.7",
     "@11ty/eleventy-plugin-handlebars": "^1.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
-    "normalize-scss": "^8.0.0",
+    "modern-normalize": "^3.0.1",
+    "postcss": "^8.5.32",
+    "postcss-import": "^17.0.1",
     "prism-themes": "^1.9.0",
     "sass": "^1.107.0"
   }
