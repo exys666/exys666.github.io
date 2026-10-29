@@ -1,4 +1,5 @@
 ---
+title: Java string templates as SQL query
 date: 2023-11-07
 ---
 # Java string templates as SQL query

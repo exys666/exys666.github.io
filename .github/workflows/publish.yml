@@ -7,15 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install and Build 🔧
         run: |
           npm install
-          make
+          npm run build
 
       - name: Publish 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: public 
-          folder: target
+          folder: _site

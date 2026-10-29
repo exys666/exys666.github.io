@@ -1,0 +1,14 @@
+{% extends "base.njk" %}
+
+{% block title %}exys666.com - Posts{% endblock %}
+
+{% block body %}
+<header>
+{% include "navbar.njk" -%}
+</header>
+<main>
+    <ul id="posts">{% for post in collections.post %}
+        <li><a href="{{ post.url }}"><time datetime="{{ post.data.date.toISOString().slice(0,10) }}">{{ post.data.date.toISOString().slice(0,10) }}</time> {{ post.data.title }}</a></li>
+    {% endfor %}</ul>
+</main>
+{% endblock %}
