@@ -601,9 +601,28 @@ ul#posts {
   padding: 0;
 }
 ul#posts a {
+  position: relative;
   text-decoration: none;
+  display: block;
   color: #eee;
 }
-ul#posts a:hover {
+ul#posts a h2, ul#posts a p {
+  padding-left: 50px;
+}
+ul#posts a time {
+  font-family: "Ubuntu Mono", monospace;
+  display: inline-block;
+  background-color: #6b0000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+  font-weight: 700;
+  text-align: right;
+}
+ul#posts a time span {
+  display: block;
+}
+ul#posts a:hover h2 {
   color: #6b0000;
 }
